@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-const URL = 'https://epycdndodauxjitlpovv.supabase.co'
-const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVweWNkbmRvZGF1eGppdGxwb3Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4NTA2MTcsImV4cCI6MjA2OTQyNjYxN30.Zf-Zkf-cpJtOAIK7anJYk9fq01fKskyXC7oCK34PmkA'
-const supabase = createClient(URL, API_KEY);
+const supabaseUrl = 'https://ossczperwzhygqqlmvci.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zc2N6cGVyd3poeWdxcWxtdmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwMTk5MjcsImV4cCI6MjA2OTU5NTkyN30.MqLSNTVjZi4_CUtrstyquXC3E1dTiZabtA1b_e-JNfo'
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;

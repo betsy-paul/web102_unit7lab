@@ -5,13 +5,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.962);
+  background: linear-gradient(135deg, #f8c8dc, #c8b6ff, #b8e0ff);
   padding:20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  animation: dreamyGradient 15s ease infinite;
 }
 
 .header{
@@ -39,11 +40,17 @@ button {
   font-size: 15px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #c4a2bc;
   color:white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #ff64d3;
+}
+
+@keyframes dreamyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

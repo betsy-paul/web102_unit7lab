@@ -1,0 +1,20 @@
+.character-detail {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.editLink {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: pink;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  color: rgb(137, 91, 91);
+  font-size: small;
+  font-weight: bold;
+}

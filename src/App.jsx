@@ -1,65 +1,47 @@
 import './App.css';
-import React from 'react';
-import { useRoutes } from 'react-router-dom'
-import ReadPosts from './pages/ReadPosts'
-import CreatePost from './pages/CreatePost'
-import EditPost from './pages/EditPost'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import ShowCharacters from './pages/ShowCharacters';
+import CreateCharacter from './pages/CreateCharacter';
+import EditCharacter from './pages/EditCharacter';
+import CharacterDetail from './pages/CharacterDetail';
+import SummaryPage from "./components/SummaryPage";
+import supabase from './client.js';
 
 
 const App = () => {
-  
-  const descr = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+  const [characters, setCharacters] = useState([]);
 
-  const posts = [
-      {'id':'1', 
-      'title': 'Cartwheel in Chelsea 🤸🏽‍♀️',
-      'author':'Harvey Milian', 
-      'description': descr},
-      {'id':'2', 
-      'title': 'Love Lock in Paris 🔒',
-      'author':'Beauford Delaney', 
-      'description':descr},
-      {'id':'3', 
-      'title': 'Wear Pink on Fridays 🎀',
-      'author':'Onika Tonya', 
-      'description':descr},
-      {'id':'4', 
-      'title': 'Adopt a Dog 🐶',
-      'author':'Denise Michelle', 
-      'description':descr},
-  ]
-
-
-  // Sets up routes
-  let element = useRoutes([
-    {
-      path: "/",
-      element:<ReadPosts data={posts}/>
-    },
-    {
-      path:"/edit/:id",
-      element: <EditPost data={posts} />
-    },
-    {
-      path:"/new",
-      element: <CreatePost />
+  useEffect(() => {
+    async function fetchCharacters() {
+      const { data, error } = await supabase.from("characters").select("*");
+      if (error) {
+        console.error("Error fetching characters:", error);
+      } else {
+        setCharacters(data);
+      }
     }
-  ]);
 
-  return ( 
+    fetchCharacters();
+  }, []);
 
+  return (
     <div className="App">
-
       <div className="header">
-        <h1>👍 Bet 1.0</h1>
-        <Link to="/"><button className="headerBtn"> Explore Challenges 🔍  </button></Link>
-        <Link to="/new"><button className="headerBtn"> Submit Challenge 🏆 </button></Link>
+        <h1>💫 Dream Squad Builder</h1>
+        <Link to="/"><button className="headerBtn">See Current Characters</button></Link>
+        <Link to="/new"><button className="headerBtn">Create Character</button></Link>
+        <SummaryPage characters={characters} />
       </div>
-        {element}
+
+      <Routes>
+        <Route path="/" element={<ShowCharacters />} />
+        <Route path="/character/:id" element={<CharacterDetail />} />
+        <Route path="/character/:id/edit" element={<EditCharacter />} />
+        <Route path="/new" element={<CreateCharacter />} />
+      </Routes>
     </div>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
